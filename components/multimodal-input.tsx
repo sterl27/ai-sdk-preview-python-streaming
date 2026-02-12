@@ -1,6 +1,11 @@
 "use client";
 
-import type { CreateUIMessage, UIMessage, UseChatHelpers, UseChatOptions } from "@ai-sdk/react";
+import type {
+  CreateUIMessage,
+  UIMessage,
+  UseChatHelpers,
+  UseChatOptions,
+} from "@ai-sdk/react";
 
 type ChatRequestOptions = {
   headers?: Record<string, string> | Headers;
@@ -57,7 +62,7 @@ export function MultimodalInput({
   stop: () => void;
   messages: Array<UIMessage>;
   setMessages: Dispatch<SetStateAction<Array<UIMessage>>>;
-  sendMessage: UseChatHelpers<UIMessage>['sendMessage']
+  sendMessage: UseChatHelpers<UIMessage>["sendMessage"];
   handleSubmit: (
     event?: {
       preventDefault?: () => void;

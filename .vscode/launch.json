@@ -1,30 +1,30 @@
 {
-    "configurations": [
-        {
-            "name": "Cloud Run: Run/Debug Locally",
-            "type": "cloudcode.cloudrun",
-            "request": "launch",
-            "build": {
-                "buildpacks": {
-                    "path": "package.json",
-                    "builder": "gcr.io/buildpacks/builder:v1"
-                }
-            },
-            "image": "ai-sdk-preview-python-streaming",
-            "service": {
-                "name": "ai-sdk-preview-python-streaming",
-                "containerPort": 8080,
-                "resources": {
-                    "limits": {
-                        "memory": "256Mi"
-                    }
-                }
-            },
-            "target": {
-                "minikube": {}
-            },
-            "watch": true,
-            "externalPortForward": 3079
+  "configurations": [
+    {
+      "name": "Cloud Run: Run/Debug Locally",
+      "type": "cloudcode.cloudrun",
+      "request": "launch",
+      "build": {
+        "buildpacks": {
+          "path": "package.json",
+          "builder": "gcr.io/buildpacks/builder:v1"
         }
-    ]
+      },
+      "image": "ai-sdk-preview-python-streaming",
+      "service": {
+        "name": "ai-sdk-preview-python-streaming",
+        "containerPort": 8080,
+        "resources": {
+          "limits": {
+            "memory": "256Mi"
+          }
+        }
+      },
+      "target": {
+        "minikube": {}
+      },
+      "watch": true,
+      "externalPortForward": 3079
+    }
+  ]
 }

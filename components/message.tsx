@@ -78,12 +78,7 @@ export const PreviewMessage = ({
                 }
               }
               if (part.type === "file") {
-                return (
-                  <PreviewAttachment
-                    key={index}
-                    attachment={part}
-                  />
-                );
+                return <PreviewAttachment key={index} attachment={part} />;
               }
               return null;
             })}

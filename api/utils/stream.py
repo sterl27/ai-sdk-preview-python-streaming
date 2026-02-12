@@ -1,7 +1,8 @@
 import json
 import traceback
 import uuid
-from typing import Any, Callable, Dict, Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 from fastapi.responses import StreamingResponse
 from openai import OpenAI
@@ -11,12 +12,13 @@ from openai.types.chat.chat_completion_message_param import ChatCompletionMessag
 def stream_text(
     client: OpenAI,
     messages: Sequence[ChatCompletionMessageParam],
-    tool_definitions: Sequence[Dict[str, Any]],
+    tool_definitions: Sequence[dict[str, Any]],
     available_tools: Mapping[str, Callable[..., Any]],
     protocol: str = "data",
 ):
     """Yield Server-Sent Events for a streaming chat completion."""
     try:
+
         def format_sse(payload: dict) -> str:
             return f"data: {json.dumps(payload, separators=(',', ':'))}\n\n"
 
@@ -26,7 +28,7 @@ def stream_text(
         text_finished = False
         finish_reason = None
         usage_data = None
-        tool_calls_state: Dict[int, Dict[str, Any]] = {}
+        tool_calls_state: dict[int, dict[str, Any]] = {}
 
         yield format_sse({"type": "start", "messageId": message_id})
 
@@ -210,7 +212,7 @@ def stream_text(
             yield format_sse({"type": "text-end", "id": text_stream_id})
             text_finished = True
 
-        finish_metadata: Dict[str, Any] = {}
+        finish_metadata: dict[str, Any] = {}
         if finish_reason is not None:
             finish_metadata["finishReason"] = finish_reason.replace("_", "-")
 
